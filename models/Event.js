@@ -26,10 +26,7 @@ const Event = new Schema({
         max: 17,
         required: true
     },
-    rsvps: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
-    }
+    rsvps: [RSVP]
 })
 
 module.exports = {
