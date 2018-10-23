@@ -25,6 +25,6 @@ router.post("/new", (req, res) => {
         })
 })
 router.delete('/delete', (req, res) => {
-
+    Fix your shit Mike!!!!!
 });
 module.exports = router;
