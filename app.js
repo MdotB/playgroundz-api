@@ -1,15 +1,17 @@
 const express = require('express');
 const parser = require('body-parser');
 const cors = require('cors');
+const router = require('./controllers/event.js');
 const app = express();
 
+app.use(parser.urlencoded({ extended: true }));
+app.use(parser.json());
+app.use(cors());
 
-
-
-const router = require('./routes/event.js');
+app.use('/', router);
 
 app.set('port', process.env.PORT || 4004);
 
 app.listen(app.get('port'), () => {
-  console.log('up and running')
+  console.log('up and running');
 });
