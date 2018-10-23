@@ -64,12 +64,14 @@ router.post("/signup", (req, res) => {
         })
 })
 // Event updats with rsvp's
-router.put("/events/rsvp/:id", (req, res) => {
-    Event.findOne({ _id: req.params.id }).then(attendance => {
-        attendance.rsvps.push({
+router.put("/event/rsvp/:id", (req, res) => {
+    Event.findOneAndUpdate({ _id: req.params.id }).then(rsvp => {
+        rsvp.rsvps.push({
             author: req.user._id,
             attending: true
         })
+    }).catch(err => {
+        console.log(err)
     })
 })
 
