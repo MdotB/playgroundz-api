@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Event } = require("../models/Event");
+const { Event } = require("../models/index");
 
 
 
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
             console.log(err)
         })
 })
-// create a Event
+// create a new Event
 router.post("/new", (req, res) => {
     Event.create()
         .then(newEvent => {
@@ -24,7 +24,11 @@ router.post("/new", (req, res) => {
             console.log(err)
         })
 })
-router.delete('/delete', (req, res) => {
-    Fix your shit Mike!!!!!
+router.delete('/delete/:id', (req, res) => {
+    Event.findOneAndDelete({_id: req.params.id})
+    .then(event => {})
+    .catch(err => {
+        console.log(err)
+    })
 });
 module.exports = router;

@@ -36,3 +36,8 @@ module.exports = {
     Event: Event,
     RSVP: RSVP
 }
+
+module.exports = {
+    Event: Event,
+    RSVP: RSVP
+}
