@@ -9,9 +9,8 @@ const User = new Schema({
     password: String,
     phone: String,
     location: String,
-    rsvp: {
-        ref: [RSVP]
-    },
+    rsvp: [],
+        
     event: {
         ref: [Event]
     }

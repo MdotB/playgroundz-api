@@ -1,10 +1,11 @@
 const mongoose = require('../db/connection');
 const Schema = mongoose.Schema;
-const User = require('User');
+const User = require('./User');
 
 const RSVP = new Schema({
     author: {
-        ref: [User]
+        type: Schema.Types.ObjectId,
+        ref: "User"
     },
     attending: Boolean
 })
