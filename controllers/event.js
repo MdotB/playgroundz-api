@@ -39,7 +39,9 @@ router.post("/new", (req, res) => {
 })
 router.delete('/delete/:id', (req, res) => {
     Event.findOneAndDelete({ _id: req.params.id })
-        .then(event => { })
+        .then(event => {
+            res.json(event)
+        })
         .catch(err => {
             console.log(err)
         })
@@ -65,8 +67,8 @@ router.post("/signup", (req, res) => {
 })
 // Event updats with rsvp's
 router.put("/event/rsvp/:id", (req, res) => {
-    Event.findOneAndUpdate({ _id: req.params.id }).then(rsvp => {
-        rsvp.rsvps.push({
+    Event.findOneAndUpdate({ _id: req.params.id }).then(res => {
+        res.rsvps.push({
             author: req.user._id,
             attending: true
         })
