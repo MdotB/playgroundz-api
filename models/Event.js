@@ -1,4 +1,4 @@
-const mongoose = require('../db/connection');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const RSVP = new Schema({
@@ -25,13 +25,14 @@ const Event = new Schema({
         min: 1,
         max: 17,
         required: true
-    }, 
+    },
     rsvps: {
-        ref: [RSVP]
+        type: Schema.Types.ObjectId,
+        ref: "User"
     }
 })
 
 module.exports = {
-    Event: mongoose.model('Event', Event),
-    RSVP: mongoose.model('RSVP', RSVP)
+    Event: Event,
+    RSVP: RSVP
 }

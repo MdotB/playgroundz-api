@@ -1,0 +1,17 @@
+[
+    {
+        "username": "Ezy",
+        "email": "bugsbunny@gmail.com",
+        "password": "123456",
+        "phone": "3013349764",
+        "zipcode": "20855",
+        "rsvp": [
+            "football event",
+            "soccer event",
+            "baseball event"
+        ],
+        "event": [
+            "my events"
+        ]
+    }
+]

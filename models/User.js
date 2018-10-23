@@ -1,7 +1,7 @@
-const mongoose = require('../db/connection');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Event = require('./Event');
-const RSVP = require('./RSVP');
+const RSVP = require('./Event');
+
 
 const User = new Schema({
     username: String,
@@ -9,11 +9,12 @@ const User = new Schema({
     password: String,
     phone: String,
     location: String,
-    rsvp: [],
-        
+    rsvp: [RSVP],
+
     event: {
-        ref: [Event]
+        type: Schema.Types.ObjectId,
+        ref: "Event"
     }
 });
 
-module.exports = mongoose.model('User', User);
+module.exports = User
