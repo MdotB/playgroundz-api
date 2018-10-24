@@ -3,7 +3,7 @@ const { Event } = require("../models/index");
 
 
 
-// Get all 
+// Get all //works on postman
 router.get('/', (req, res) => {
     Event.find({})
         .then(post => {
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
             console.log(err)
         })
 })
-//Get one Event by id
+//Get one Event by id //works on postman
 
 router.get("/event/:id", (req, res) => {
     Event.findById({ _id: req.params.id })
@@ -26,8 +26,7 @@ router.get("/event/:id", (req, res) => {
         })
 })
 
-// create a new Event
-
+// create a new Event //works on postman
 router.post("/new", (req, res) => {
     Event.create()
         .then(newEvent => {
@@ -37,8 +36,9 @@ router.post("/new", (req, res) => {
             console.log(err)
         })
 })
+// delete an Event by id //works on postman
 router.delete('/delete/:id', (req, res) => {
-    Event.findOneAndDelete({ _id: req.params.id })
+    Event.findByIdAndDelete({ _id: req.params.id })
         .then(event => {
             res.json(event)
         })
@@ -67,11 +67,14 @@ router.post("/signup", (req, res) => {
 })
 // Event updats with rsvp's
 router.put("/event/rsvp/:id", (req, res) => {
-    Event.findOneAndUpdate({ _id: req.params.id }).then(res => {
-        res.rsvps.push({
+    let { attending } = req.body
+    Event.findById({ _id: req.params.id }).then(attend => {
+        console.log(attend)
+        attend.rsvps.push({
+            attending,
             author: req.user._id,
-            attending: true
         })
+        attend.save()
     }).catch(err => {
         console.log(err)
     })

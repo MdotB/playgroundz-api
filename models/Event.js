@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const RSVP = new Schema({
+    attending: String,
     author: {
         type: Schema.Types.ObjectId,
         ref: "User"
-    },
-    attending: Boolean
+    }
 })
 
 const Event = new Schema({
@@ -28,11 +28,6 @@ const Event = new Schema({
     },
     rsvps: [RSVP]
 })
-
-module.exports = {
-    Event: Event,
-    RSVP: RSVP
-}
 
 module.exports = {
     Event: Event,
