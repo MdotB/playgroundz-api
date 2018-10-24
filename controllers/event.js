@@ -66,15 +66,18 @@ router.post("/signup", (req, res) => {
         })
 })
 // Event updats with rsvp's
-router.put("/event/rsvp/:id", (req, res) => {
+router.post("/event/:id/rsvp", (req, res) => {
     let { attending } = req.body
-    Event.findById({ _id: req.params.id }).then(attend => {
-        console.log(attend)
-        attend.rsvps.push({
+    Event.findById({ _id: req.params.id }).then(event => {
+        console.log('event: ', event)
+        console.log('rsvps before: ', event._doc.rsvps)
+        event._doc.rsvps.push({
             attending,
-            author: req.user._id,
+            author: 'ashjfanleuola',
         })
-        attend.save()
+        console.log('rsvps after: ', event._doc.rsvps)
+        event.save()
+        res.json(event)
     }).catch(err => {
         console.log(err)
     })
