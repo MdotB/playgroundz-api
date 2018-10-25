@@ -7,6 +7,17 @@ const mongoose = require('mongoose')
 const User = mongoose.model('User')
 
 
+//profile update 
+
+// router.post("/user/:id", (req, res) => {
+//     User.findById({ _id: req.params.id })
+//         .then(user => {
+//             user.username = req.body.username,
+//                 user.phone = req.body.phone,
+//                 user.location = req.body.location
+//         })
+// })
+
 // signup user
 router.post('/users/signup', (req, res) => {
     if (req.body.email && req.body.password) {
@@ -21,7 +32,7 @@ router.post('/users/signup', (req, res) => {
                         .then(user => {
                             if (user) {
                                 var payload = {
-                                    id: newUser.id
+                                    id: user._id
                                 }
                                 var token = jwt.encode(payload, config.jwtSecret)
                                 res.json({
@@ -90,8 +101,24 @@ router.get("/event/:id", (req, res) => {
 
 // create a new Event //works on postman
 router.post("/new", (req, res) => {
-    Event.create()
+    // console.log(req.body)
+    let newEvt = {
+        sport: req.body.sport,
+        locationName: req.body.locationName,
+        address: {
+            street: req.body.street,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip
+        },
+        eventDate: req.body.eventDate,
+        locationImg: req.body.locationImg,
+        age: req.body.age
+    }
+    console.log('newevt', newEvt)
+    Event.create(newEvt)
         .then(newEvent => {
+            console.log(newEvent)
             res.json(newEvent)
         })
         .catch(err => {
@@ -101,6 +128,7 @@ router.post("/new", (req, res) => {
 // delete an Event by id //works on postman
 router.delete('/delete/:id', (req, res) => {
     Event.findByIdAndDelete({ _id: req.params.id })
+
         .then(event => {
             res.json(event)
         })
@@ -135,7 +163,7 @@ router.post("/event/:id/rsvp", (req, res) => {
         console.log('rsvps before: ', event._doc.rsvps)
         event._doc.rsvps.push({
             attending,
-            author: 'ashjfanleuola',
+            author: req.user._id,
         })
         console.log('rsvps after: ', event._doc.rsvps)
         event.save()

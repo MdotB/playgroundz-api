@@ -18,7 +18,7 @@ const Event = new Schema({
         state: String,
         zip: String
     },
-    eventDate: Date,
+    eventDate: String,
     locationImg: String,
     age: {
         type: Number,
