@@ -28,15 +28,15 @@ router.post('/users/signup', (req, res) => {
                                     token: token
                                 })
                             } else {
-                                res.sendStatus(401)
+                                res.status(401).json({ "message": "unable to create user" })
                             }
                         })
                 } else {
-                    res.sendStatus(401)
+                    res.status(401).json({ "message": "this email is already taken" })
                 }
             })
     } else {
-        res.sendStatus(401)
+        res.status(401).json({ "message": "email & password are required" })
     }
 })
 // login user
@@ -53,14 +53,14 @@ router.post('/users/login', (req, res) => {
                         token: token
                     })
                 } else {
-                    res.sendStatus(401)
+                    res.status(401).json({ "message": "no match found" })
                 }
             } else {
-                res.sendStatus(401)
+                res.status(401).json({ "message": "email doesn\'t exsist" })
             }
         })
     } else {
-        res.sendStatus(401)
+        res.status(401).json({ "message": "both fields are required" })
     }
 })
 
