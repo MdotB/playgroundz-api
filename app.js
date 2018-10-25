@@ -17,4 +17,3 @@ app.set('port', process.env.PORT || 4004);
 app.listen(app.get('port'), () => {
   console.log('up and running');
 });
-//wtf!

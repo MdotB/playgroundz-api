@@ -9,15 +9,6 @@ const User = mongoose.model('User')
 
 //profile update 
 
-// router.post("/user/:id", (req, res) => {
-//     User.findById({ _id: req.params.id })
-//         .then(user => {
-//             user.username = req.body.username,
-//                 user.phone = req.body.phone,
-//                 user.location = req.body.location
-//         })
-// })
-
 // signup user
 router.post('/users/signup', (req, res) => {
     if (req.body.email && req.body.password) {
