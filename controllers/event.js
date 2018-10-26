@@ -124,40 +124,17 @@ router.delete('/delete/:id', (req, res) => {
         })
 });
 
-// sign in form 
-router.post("/signup", (req, res) => {
-    User.create({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-        phone: req.body.phone,
-        location: req.body.location,
-        rsvp: req.body.user.rsvp,
-        event: req.body.event
-    })
-        .then(newUser => {
-            res.json(newUser)
+router.post("/event/:id/:userID", (req, res)=> {
+    Event.findById({_id: req.params.id}).then(event => {
+        console.log(event)
+        User.findOne({_id: req.params.userID}).then(user => {
+            console.log(user)
+            console.log(event.rsvps)
+            event.rsvps.push(user);  
+        }).then(_ => {
+            event.save();
         })
-        .catch(err => {
-            console.log(err)
-        })
-})
-// Event updats with rsvp's
-router.post("/event/:id/rsvp", (req, res) => {
-    let { attending } = req.body
-    Event.findById({ _id: req.params.id }).then(event => {
-        console.log('event: ', event)
-        console.log('rsvps before: ', event._doc.rsvps)
-        event._doc.rsvps.push({
-            attending,
-            author: req.user._id,
-        })
-        console.log('rsvps after: ', event._doc.rsvps)
-        event.save()
-        res.json(event)
-    }).catch(err => {
-        console.log(err)
-    })
+    }).catch(err => console.log(err))
 })
 
 module.exports = router;

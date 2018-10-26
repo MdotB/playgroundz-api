@@ -18,12 +18,7 @@ const Event = new Schema({
     zip: String,
     eventDate: String,
     locationImg: String,
-    age: {
-        type: Number,
-        min: 1,
-        max: 100,
-        required: true
-    },
+    age: Number,
     rsvps: [RSVP]
 })
 
