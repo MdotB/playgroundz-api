@@ -117,6 +117,7 @@ router.delete('/delete/:id', (req, res) => {
 
         .then(event => {
             res.json(event)
+            console.log(event)
         })
         .catch(err => {
             console.log(err)
