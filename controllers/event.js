@@ -90,17 +90,17 @@ router.get("/event/:id", (req, res) => {
         })
 })
 
-// create a new Event //works on postman
+// create a new Event // works on postman
 router.post("/new", (req, res) => {
     // console.log(req.body)
     let newEvt = {
         sport: req.body.sport,
         locationName: req.body.locationName,
         address: {
-            street: req.body.street,
-            city: req.body.city,
-            state: req.body.state,
-            zip: req.body.zip
+            street: req.body.address.street,
+            city: req.body.address.city,
+            state: req.body.address.state,
+            zip: req.body.address.zip
         },
         eventDate: req.body.eventDate,
         locationImg: req.body.locationImg,
