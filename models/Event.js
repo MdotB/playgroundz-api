@@ -12,18 +12,16 @@ const RSVP = new Schema({
 const Event = new Schema({
     sport: String,
     locationName: String,
-    address: {
-        street: String,
-        city: String,
-        state: String,
-        zip: String
-    },
+    street: String,
+    city: String,
+    state: String,
+    zip: String,
     eventDate: String,
     locationImg: String,
     age: {
         type: Number,
         min: 1,
-        max: 17,
+        max: 100,
         required: true
     },
     rsvps: [RSVP]

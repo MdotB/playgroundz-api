@@ -2,12 +2,10 @@
     {
         "sport": "soccer",
         "locationName": "LeDroit Park",
-        "address": {
-            "street": "123 Easy Street",
-            "city": "Washington",
-            "state": "DC",
-            "zip": "20002"
-        },
+        "street": "123 Easy Street",
+        "city": "Washington",
+        "state": "DC",
+        "zip": "20002",
         "eventDate": "11/16/2018",
         "locationImg": "https://images.unsplash.com/photo-1508802449768-a389d1acbfcd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d0b3c33a69e64bb4345c31fafafaaa59&auto=format&fit=crop&w=1350&q=80",
         "age": 10,
@@ -20,12 +18,10 @@
     {
         "sport": "soccer",
         "locationName": "National Mall",
-        "address": {
-            "street": "222 Sesame Street",
-            "city": "Washington",
-            "state": "DC",
-            "zip": "20005"
-        },
+        "street": "222 Sesame Street",
+        "city": "Washington",
+        "state": "DC",
+        "zip": "20005",
         "eventDate": "11/16/2018",
         "locationImg": "https://images.unsplash.com/photo-1528024719646-5360a944bd74?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ab7d6a402bf68b2894d7e8f08563076&auto=format&fit=crop&w=1350&q=80",
         "age": 10,
