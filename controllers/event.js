@@ -48,7 +48,8 @@ router.post('/users/login', (req, res) => {
             if (user) {
                 if (user.password === req.body.password) {
                     var payload = {
-                        id: user.id
+                        id: user.id,
+                        email: user.email
                     }
                     var token = jwt.encode(payload, config.jwtSecret)
                     res.json({
@@ -124,17 +125,26 @@ router.delete('/delete/:id', (req, res) => {
         })
 });
 
-router.post("/event/:id/:userID", (req, res)=> {
-    Event.findById({_id: req.params.id}).then(event => {
+router.post("/event/:id/:userID", (req, res) => {
+    Event.findById({ _id: req.params.id }).then(event => {
         console.log(event)
-        User.findOne({_id: req.params.userID}).then(user => {
+        User.findOne({ _id: req.params.userID }).then(user => {
             console.log(user)
             console.log(event.rsvps)
-            event.rsvps.push(user);  
+            event.rsvps.push(user);
         }).then(_ => {
             event.save();
         })
     }).catch(err => console.log(err))
 })
+
+router.post('/event/:id?:userID', (req, res) => {
+    User.findOne({ _id: req.params.userID }).then(user => {
+        Event.findByIdAndUpdate({ _id: req.params.id }).then(event => {
+            event.populate("user")
+            event.save()
+        }).catch(err => { console.log(err) })
+    }).catch(error => console.log(error))
+});
 
 module.exports = router;

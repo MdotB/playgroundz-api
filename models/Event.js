@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const RSVP = new Schema({
-    attending: String,
-    author: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
-    }
-})
+// const RSVP = new Schema({
+//     attending: String,
+//     author: {
+//         type: Schema.Types.ObjectId,
+//         ref: "User"
+//     }
+// })
 
 const Event = new Schema({
     sport: String,
@@ -19,7 +19,10 @@ const Event = new Schema({
     eventDate: String,
     locationImg: String,
     age: Number,
-    rsvps: [RSVP]
+    rsvps: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
 })
 
 module.exports = {
